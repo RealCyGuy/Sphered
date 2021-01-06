@@ -5,15 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    KeyCode keyUp;
-    [SerializeField]
-    KeyCode keyLeft;
-    [SerializeField]
-    KeyCode keyDown;
-    [SerializeField]
-    KeyCode keyRight;
+    public KeyCode keyUp;
+    public KeyCode keyLeft;
+    public KeyCode keyDown;
+    public KeyCode keyRight;
     private float speed = 0.6f;
+    public bool playerOne;
 
     void FixedUpdate()
     {
@@ -29,7 +26,18 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (other.collider.tag == "Death")
+        {
+            if (playerOne)
+            {
+                Score.playerTwoScore += 1;
+            }
+            else
+            {
+                Score.playerOneScore += 1;
+            }
+            Debug.Log(Score.playerTwoScore);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         if (other.collider.tag == "Food")
         {
             transform.localScale += new Vector3(0.25f, 0.25f, 0.25f);

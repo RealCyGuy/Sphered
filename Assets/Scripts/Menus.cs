@@ -8,6 +8,8 @@ public class Menus : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(1);
+        Score.playerOneScore = 0;
+        Score.playerTwoScore = 0;
     }
     public void QuitGame()
     {
